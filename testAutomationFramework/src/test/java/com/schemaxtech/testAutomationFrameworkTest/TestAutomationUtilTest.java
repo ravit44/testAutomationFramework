@@ -50,13 +50,6 @@ public class TestAutomationUtilTest {
 	}
 	
 	
-//	@Test(dataProvider="sampleDataProvider",dependsOnMethods="postSampleTest")
-//	public void postSampleTest1(String testCase, JSONObject requestJsonObject,Map<String, Object> expectedAttributeValues,Map<String,String> responseAttributePaths) throws Exception {
-//		 
-//		
-//		ResponseBody response= TestAutomationUtil.methodForPost("https://reqres.in", "api/users",requestJsonObject);
-//	
-//		TestAutomationUtil.verifyResponse(response, expectedAttributeValues, responseAttributePaths);
-//	}
+
 
 }

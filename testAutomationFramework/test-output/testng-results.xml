@@ -1,46 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="2" ignored="0" total="2" passed="0">
+<testng-results skipped="0" failed="6" ignored="0" total="6" passed="0">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="118293" started-at="2019-07-24T20:41:25Z" finished-at="2019-07-24T20:43:24Z">
+  <suite name="Default suite" duration-ms="7326" started-at="2019-07-24T20:55:24Z" finished-at="2019-07-24T20:55:31Z">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="118293" started-at="2019-07-24T20:41:25Z" finished-at="2019-07-24T20:43:24Z">
+    <test name="Default test" duration-ms="7326" started-at="2019-07-24T20:55:24Z" finished-at="2019-07-24T20:55:31Z">
       <class name="com.schemaxtech.testAutomationFrameworkTest.TestAutomationUtilTest">
-        <test-method status="FAIL" signature="postSampleTest(java.lang.String, org.json.JSONObject, java.util.Map, java.util.Map)[pri:0, instance:com.schemaxtech.testAutomationFrameworkTest.TestAutomationUtilTest@7334aada]" name="postSampleTest" duration-ms="101298" started-at="2019-07-24T20:41:38Z" data-provider="sampleDataProvider" finished-at="2019-07-24T20:43:19Z">
+        <test-method status="FAIL" signature="postSampleTest(java.lang.String, org.json.JSONObject, java.util.Map, java.util.Map)[pri:0, instance:com.schemaxtech.testAutomationFrameworkTest.TestAutomationUtilTest@146ba0ac]" name="postSampleTest" duration-ms="5290" started-at="2019-07-24T20:55:24Z" data-provider="sampleDataProvider" finished-at="2019-07-24T20:55:29Z">
           <params>
             <param index="0">
               <value>
-                <![CDATA[Test1]]>
+                <![CDATA[TC_003]]>
               </value>
             </param>
             <param index="1">
               <value>
-                <![CDATA[{"name":"man123","job":"job123"}]]>
+                <![CDATA[{"operation_name":"laying","is_external_operation":true,"operation_type":"Cut","operation_description":"laying","operation_code":10,"operation_category":"Panel Form"}]]>
               </value>
             </param>
             <param index="2">
               <value>
-                <![CDATA[{error code=, ID=, Job=, error=, empty=false}]]>
+                <![CDATA[{operation_name=laying, operation_type=Cut, errInfo=Operation Code or Operation Name already exists, isactive=, operation_description=laying, operation_code=10, message=, operation_category=Panel Form, status=false}]]>
               </value>
             </param>
             <param index="3">
               <value>
-                <![CDATA[{empty=empty}]]>
+                <![CDATA[{operation_name=operation_name, errInfo=errInfo, operation_description=operation_description, operation_code=operation_code, isActive=isActive, message=message, status=status}]]>
               </value>
             </param>
           </params>
           <exception class="java.lang.AssertionError">
             <message>
-              <![CDATA[Sample message  expected [false] but found [null]]]>
+              <![CDATA[Sample message  expected [Operation Code or Operation Name already exists] but found [null]]]>
             </message>
             <full-stacktrace>
-              <![CDATA[java.lang.AssertionError: Sample message  expected [false] but found [null]
+              <![CDATA[java.lang.AssertionError: Sample message  expected [Operation Code or Operation Name already exists] but found [null]
 at org.testng.Assert.fail(Assert.java:96)
 at org.testng.Assert.failNotEquals(Assert.java:776)
 at org.testng.Assert.assertEqualsImpl(Assert.java:132)
 at org.testng.Assert.assertEquals(Assert.java:118)
-at com.schemaxtech.testAutomationFramework.TestAutomationUtil.verifyResponse(TestAutomationUtil.java:165)
+at com.schemaxtech.testAutomationFramework.TestAutomationUtil.verifyResponse(TestAutomationUtil.java:154)
 at com.schemaxtech.testAutomationFrameworkTest.TestAutomationUtilTest.postSampleTest(TestAutomationUtilTest.java:49)
 at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
@@ -73,40 +73,304 @@ at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
           <reporter-output>
           </reporter-output>
         </test-method> <!-- postSampleTest -->
-        <test-method status="FAIL" signature="postSampleTest(java.lang.String, org.json.JSONObject, java.util.Map, java.util.Map)[pri:0, instance:com.schemaxtech.testAutomationFrameworkTest.TestAutomationUtilTest@7334aada]" name="postSampleTest" duration-ms="4000" started-at="2019-07-24T20:43:19Z" data-provider="sampleDataProvider" finished-at="2019-07-24T20:43:23Z">
+        <test-method status="FAIL" signature="postSampleTest(java.lang.String, org.json.JSONObject, java.util.Map, java.util.Map)[pri:0, instance:com.schemaxtech.testAutomationFrameworkTest.TestAutomationUtilTest@146ba0ac]" name="postSampleTest" duration-ms="308" started-at="2019-07-24T20:55:29Z" data-provider="sampleDataProvider" finished-at="2019-07-24T20:55:30Z">
           <params>
             <param index="0">
               <value>
-                <![CDATA[Test2]]>
+                <![CDATA[TC_002]]>
               </value>
             </param>
             <param index="1">
               <value>
-                <![CDATA[{"name":"man456","job":"job456"}]]>
+                <![CDATA[{"operation_name":"cutting","is_external_operation":true,"operation_type":"Cut","operation_description":"sewing","operation_code":100,"operation_category":"Panel Form"}]]>
               </value>
             </param>
             <param index="2">
               <value>
-                <![CDATA[{error code=, ID=, Job=, error=, empty=false}]]>
+                <![CDATA[{operation_name=cutting, operation_type=Cut, errInfo=Operation Code or Operation Name already exists, isactive=, operation_description=cutting1, operation_code=10, message=, operation_category=Panel Form, status=false}]]>
               </value>
             </param>
             <param index="3">
               <value>
-                <![CDATA[{empty=empty}]]>
+                <![CDATA[{operation_name=operation_name, errInfo=errInfo, operation_description=operation_description, operation_code=operation_code, isActive=isActive, message=message, status=status}]]>
               </value>
             </param>
           </params>
           <exception class="java.lang.AssertionError">
             <message>
-              <![CDATA[Sample message  expected [false] but found [null]]]>
+              <![CDATA[Sample message  expected [Operation Code or Operation Name already exists] but found [null]]]>
             </message>
             <full-stacktrace>
-              <![CDATA[java.lang.AssertionError: Sample message  expected [false] but found [null]
+              <![CDATA[java.lang.AssertionError: Sample message  expected [Operation Code or Operation Name already exists] but found [null]
 at org.testng.Assert.fail(Assert.java:96)
 at org.testng.Assert.failNotEquals(Assert.java:776)
 at org.testng.Assert.assertEqualsImpl(Assert.java:132)
 at org.testng.Assert.assertEquals(Assert.java:118)
-at com.schemaxtech.testAutomationFramework.TestAutomationUtil.verifyResponse(TestAutomationUtil.java:165)
+at com.schemaxtech.testAutomationFramework.TestAutomationUtil.verifyResponse(TestAutomationUtil.java:154)
+at com.schemaxtech.testAutomationFrameworkTest.TestAutomationUtilTest.postSampleTest(TestAutomationUtilTest.java:49)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+at java.lang.reflect.Method.invoke(Unknown Source)
+at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:124)
+at org.testng.internal.Invoker.invokeMethod(Invoker.java:583)
+at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:719)
+at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:989)
+at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:125)
+at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:109)
+at org.testng.TestRunner.privateRun(TestRunner.java:648)
+at org.testng.TestRunner.run(TestRunner.java:505)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:455)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:450)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:415)
+at org.testng.SuiteRunner.run(SuiteRunner.java:364)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:84)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1208)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1137)
+at org.testng.TestNG.runSuites(TestNG.java:1049)
+at org.testng.TestNG.run(TestNG.java:1017)
+at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.AssertionError -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- postSampleTest -->
+        <test-method status="FAIL" signature="postSampleTest(java.lang.String, org.json.JSONObject, java.util.Map, java.util.Map)[pri:0, instance:com.schemaxtech.testAutomationFrameworkTest.TestAutomationUtilTest@146ba0ac]" name="postSampleTest" duration-ms="443" started-at="2019-07-24T20:55:30Z" data-provider="sampleDataProvider" finished-at="2019-07-24T20:55:30Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[TC_001]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[{"operation_name":"cutting","is_external_operation":true,"operation_type":"Cut","operation_description":"sewing","operation_code":100,"operation_category":"Panel Form"}]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[{operation_name=cutting, operation_type=Cut, errInfo=, isactive=true, operation_description=cutting, operation_code=10, message=, operation_category=Panel Form, status=true}]]>
+              </value>
+            </param>
+            <param index="3">
+              <value>
+                <![CDATA[{operation_name=operation_name, errInfo=errInfo, operation_description=operation_description, operation_code=operation_code, isActive=isActive, message=message, status=status}]]>
+              </value>
+            </param>
+          </params>
+          <exception class="java.lang.AssertionError">
+            <message>
+              <![CDATA[Sample message  expected [] but found [null]]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.AssertionError: Sample message  expected [] but found [null]
+at org.testng.Assert.fail(Assert.java:96)
+at org.testng.Assert.failNotEquals(Assert.java:776)
+at org.testng.Assert.assertEqualsImpl(Assert.java:132)
+at org.testng.Assert.assertEquals(Assert.java:118)
+at com.schemaxtech.testAutomationFramework.TestAutomationUtil.verifyResponse(TestAutomationUtil.java:154)
+at com.schemaxtech.testAutomationFrameworkTest.TestAutomationUtilTest.postSampleTest(TestAutomationUtilTest.java:49)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+at java.lang.reflect.Method.invoke(Unknown Source)
+at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:124)
+at org.testng.internal.Invoker.invokeMethod(Invoker.java:583)
+at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:719)
+at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:989)
+at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:125)
+at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:109)
+at org.testng.TestRunner.privateRun(TestRunner.java:648)
+at org.testng.TestRunner.run(TestRunner.java:505)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:455)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:450)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:415)
+at org.testng.SuiteRunner.run(SuiteRunner.java:364)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:84)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1208)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1137)
+at org.testng.TestNG.runSuites(TestNG.java:1049)
+at org.testng.TestNG.run(TestNG.java:1017)
+at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.AssertionError -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- postSampleTest -->
+        <test-method status="FAIL" signature="postSampleTest(java.lang.String, org.json.JSONObject, java.util.Map, java.util.Map)[pri:0, instance:com.schemaxtech.testAutomationFrameworkTest.TestAutomationUtilTest@146ba0ac]" name="postSampleTest" duration-ms="409" started-at="2019-07-24T20:55:30Z" data-provider="sampleDataProvider" finished-at="2019-07-24T20:55:30Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[TC_006]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[{"operation_name":"cutting","is_external_operation":true,"operation_type":"Cut","operation_description":"sewing","operation_code":100,"operation_category":"Panel Form"}]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[{operation_name=laying1, operation_type=test, errInfo=, isactive=, operation_description=laying, operation_code=12, message=invalid input value for enum operations_operation_type_enum: ""test"", operation_category=Panel Form, status=false}]]>
+              </value>
+            </param>
+            <param index="3">
+              <value>
+                <![CDATA[{operation_name=operation_name, errInfo=errInfo, operation_description=operation_description, operation_code=operation_code, isActive=isActive, message=message, status=status}]]>
+              </value>
+            </param>
+          </params>
+          <exception class="java.lang.AssertionError">
+            <message>
+              <![CDATA[Sample message  expected [laying1] but found [cutting]]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.AssertionError: Sample message  expected [laying1] but found [cutting]
+at org.testng.Assert.fail(Assert.java:96)
+at org.testng.Assert.failNotEquals(Assert.java:776)
+at org.testng.Assert.assertEqualsImpl(Assert.java:137)
+at org.testng.Assert.assertEquals(Assert.java:118)
+at com.schemaxtech.testAutomationFramework.TestAutomationUtil.verifyResponse(TestAutomationUtil.java:154)
+at com.schemaxtech.testAutomationFrameworkTest.TestAutomationUtilTest.postSampleTest(TestAutomationUtilTest.java:49)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+at java.lang.reflect.Method.invoke(Unknown Source)
+at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:124)
+at org.testng.internal.Invoker.invokeMethod(Invoker.java:583)
+at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:719)
+at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:989)
+at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:125)
+at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:109)
+at org.testng.TestRunner.privateRun(TestRunner.java:648)
+at org.testng.TestRunner.run(TestRunner.java:505)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:455)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:450)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:415)
+at org.testng.SuiteRunner.run(SuiteRunner.java:364)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:84)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1208)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1137)
+at org.testng.TestNG.runSuites(TestNG.java:1049)
+at org.testng.TestNG.run(TestNG.java:1017)
+at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.AssertionError -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- postSampleTest -->
+        <test-method status="FAIL" signature="postSampleTest(java.lang.String, org.json.JSONObject, java.util.Map, java.util.Map)[pri:0, instance:com.schemaxtech.testAutomationFrameworkTest.TestAutomationUtilTest@146ba0ac]" name="postSampleTest" duration-ms="413" started-at="2019-07-24T20:55:30Z" data-provider="sampleDataProvider" finished-at="2019-07-24T20:55:31Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[TC_005]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[{"operation_name":"cutting","is_external_operation":true,"operation_type":"Cut","operation_description":"sewing","operation_code":100,"operation_category":"Panel Form"}]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[{operation_name=laying1, operation_type=Cut, errInfo=, isactive=, operation_description=laying, operation_code=12, message=invalid input value for enum operations_operation_category_enum: ""test"", operation_category=test, status=false}]]>
+              </value>
+            </param>
+            <param index="3">
+              <value>
+                <![CDATA[{operation_name=operation_name, errInfo=errInfo, operation_description=operation_description, operation_code=operation_code, isActive=isActive, message=message, status=status}]]>
+              </value>
+            </param>
+          </params>
+          <exception class="java.lang.AssertionError">
+            <message>
+              <![CDATA[Sample message  expected [laying1] but found [cutting]]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.AssertionError: Sample message  expected [laying1] but found [cutting]
+at org.testng.Assert.fail(Assert.java:96)
+at org.testng.Assert.failNotEquals(Assert.java:776)
+at org.testng.Assert.assertEqualsImpl(Assert.java:137)
+at org.testng.Assert.assertEquals(Assert.java:118)
+at com.schemaxtech.testAutomationFramework.TestAutomationUtil.verifyResponse(TestAutomationUtil.java:154)
+at com.schemaxtech.testAutomationFrameworkTest.TestAutomationUtilTest.postSampleTest(TestAutomationUtilTest.java:49)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+at java.lang.reflect.Method.invoke(Unknown Source)
+at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:124)
+at org.testng.internal.Invoker.invokeMethod(Invoker.java:583)
+at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:719)
+at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:989)
+at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:125)
+at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:109)
+at org.testng.TestRunner.privateRun(TestRunner.java:648)
+at org.testng.TestRunner.run(TestRunner.java:505)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:455)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:450)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:415)
+at org.testng.SuiteRunner.run(SuiteRunner.java:364)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:84)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1208)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1137)
+at org.testng.TestNG.runSuites(TestNG.java:1049)
+at org.testng.TestNG.run(TestNG.java:1017)
+at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.AssertionError -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- postSampleTest -->
+        <test-method status="FAIL" signature="postSampleTest(java.lang.String, org.json.JSONObject, java.util.Map, java.util.Map)[pri:0, instance:com.schemaxtech.testAutomationFrameworkTest.TestAutomationUtilTest@146ba0ac]" name="postSampleTest" duration-ms="297" started-at="2019-07-24T20:55:31Z" data-provider="sampleDataProvider" finished-at="2019-07-24T20:55:31Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[TC_004]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[{"operation_name":"cutting","is_external_operation":true,"operation_type":"Cut","operation_description":"sewing","operation_code":100,"operation_category":"Panel Form"}]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[{operation_name=cutting, operation_type=Cut, errInfo=, isactive=true, operation_description=sewing, operation_code=100, message=, operation_category=Panel Form, status=true}]]>
+              </value>
+            </param>
+            <param index="3">
+              <value>
+                <![CDATA[{operation_name=operation_name, errInfo=errInfo, operation_description=operation_description, operation_code=operation_code, isActive=isActive, message=message, status=status}]]>
+              </value>
+            </param>
+          </params>
+          <exception class="java.lang.AssertionError">
+            <message>
+              <![CDATA[Sample message  expected [] but found [null]]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.AssertionError: Sample message  expected [] but found [null]
+at org.testng.Assert.fail(Assert.java:96)
+at org.testng.Assert.failNotEquals(Assert.java:776)
+at org.testng.Assert.assertEqualsImpl(Assert.java:132)
+at org.testng.Assert.assertEquals(Assert.java:118)
+at com.schemaxtech.testAutomationFramework.TestAutomationUtil.verifyResponse(TestAutomationUtil.java:154)
 at com.schemaxtech.testAutomationFrameworkTest.TestAutomationUtilTest.postSampleTest(TestAutomationUtilTest.java:49)
 at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)

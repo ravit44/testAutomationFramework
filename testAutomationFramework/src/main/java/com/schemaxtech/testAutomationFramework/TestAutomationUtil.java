@@ -1,36 +1,25 @@
 package com.schemaxtech.testAutomationFramework;
 
+import static io.restassured.RestAssured.given;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.Reader;
-import java.lang.reflect.Type;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 
-import org.codehaus.jackson.map.util.JSONPObject;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 import org.testng.Assert;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.gson.JsonElement;
-import com.google.gson.reflect.TypeToken;
-
 import au.com.bytecode.opencsv.CSVReader;
-import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
-
-import static io.restassured.RestAssured.given;
-import io.restassured.response.Response;
 import io.restassured.response.ResponseBody;
-import io.restassured.specification.RequestSpecification;
 
 public class TestAutomationUtil {
 
