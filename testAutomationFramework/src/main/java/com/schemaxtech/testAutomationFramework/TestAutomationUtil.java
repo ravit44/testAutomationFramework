@@ -4,6 +4,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.Reader;
+import java.lang.reflect.Type;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -19,6 +20,8 @@ import org.json.JSONTokener;
 import org.testng.Assert;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.JsonElement;
+import com.google.gson.reflect.TypeToken;
 
 import au.com.bytecode.opencsv.CSVReader;
 import io.restassured.RestAssured;
@@ -30,41 +33,29 @@ import io.restassured.response.ResponseBody;
 import io.restassured.specification.RequestSpecification;
 
 public class TestAutomationUtil {
-	public static String csvPath, jsonpath1, mapperpath, resultcsvPath, expectedmapperpath;
 
 	private static String testSenarioColumnName = "TestCase_Id";
 
-//	public static JSONPObject readJsonObject(String jsonFilePath) throws IOException {
-//
-//		byte[] jsonBytes = Files.readAllBytes(Paths.get(jsonFilePath));
-//
-//		ObjectMapper objectMapper = new ObjectMapper();
-//
-//		Object json = objectMapper.readValue(jsonBytes, Object.class);
-//
-//		System.out.println(objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(json));
-//		return null;
-//	}
-//
-//	public static JSONObject getJsonObject(String jsonPath) {
-//		try {
-//			byte[] jsonBytes = Files.readAllBytes(Paths.get(jsonPath));
-//
-//			ObjectMapper objectMapper = new ObjectMapper();
-//
-//			return new JSONObject();
-//		} catch (Exception e) {
-//
-//		}
-//		return null;
-//	}
-
-	public static JSONObject getJsonObjectnew(String jsonPath) throws IOException {
-		InputStream is = new FileInputStream(jsonPath);
-		JSONTokener tokener = new JSONTokener(is);
-		JSONObject object = new JSONObject(tokener);
-		return object;
+	/**
+	 * It reads a JSON Object from a JSON file
+	 * 
+	 * @param jsonPath relative path of JSON file
+	 * @return JSONObject
+	 * @throws IOException
+	 */
+	public static JSONObject getJsonObject(final String jsonPath) throws IOException {
+		InputStream inputStream = new FileInputStream(jsonPath);
+		JSONTokener tokener = new JSONTokener(inputStream);
+		JSONObject jsonObject = new JSONObject(tokener);
+		return jsonObject;
 	}
+
+	/**
+	 * It fetches test data as a Map Object from a CSV file
+	 * 
+	 * @param csvPath relative path of CSV file
+	 * @return Map object of test data
+	 */
 
 	public static Map<String, Map<String, Object>> fetchCsvTestData(final String csvPath) {
 		Map<String, Map<String, Object>> attributeValues = new HashMap<String, Map<String, Object>>();
@@ -74,7 +65,7 @@ public class TestAutomationUtil {
 			Map<String, Object> testData = new HashMap<String, Object>();
 			Object[] testValues = values.get(i);
 			for (int j = 0; j < testValues.length; j++) {
-				testData.put(headers[j], testValues[j]);
+				testData.put(headers[j], parseString((String)testValues[j]));
 			}
 			String testCase = (String) testData.get(testSenarioColumnName);
 			testData.remove(testSenarioColumnName);
@@ -84,16 +75,17 @@ public class TestAutomationUtil {
 
 	}
 
-	public static Map<String, String> fetchAttrPaths(final String mapperpath) {
+	public static Map<String, String> fetchAttrPaths(final String mapperPath) {
 		Map<String, String> attrPaths = new HashMap<String, String>();
-		List<String[]> values = readCsv(mapperpath);
+		List<String[]> values = readCsv(mapperPath);
 		for (int i = 1; i < values.size(); i++) {
 			attrPaths.put(values.get(i)[0], values.get(i)[1]);
 		}
 		return attrPaths;
 	}
 
-	public static List<String[]> readCsv(String csvPath) {
+	@SuppressWarnings("resource")
+	public static List<String[]> readCsv(final String csvPath) {
 		try {
 			Reader reader = Files.newBufferedReader(Paths.get(csvPath));
 			CSVReader csvReader = new CSVReader(reader);
@@ -103,9 +95,6 @@ public class TestAutomationUtil {
 		}
 		return null;
 	}
-	
-	
-	
 
 	// Updating JSON values with the data in excel
 	public static Map<String, JSONObject> updatJsonWithTestData(Map<String, Map<String, Object>> attributeValues,
@@ -133,6 +122,7 @@ public class TestAutomationUtil {
 	public static JSONObject UpdateJsonValue(Object value, JSONObject jsonObject, String[] keys) throws Exception {
 		String currentKey = keys[0];
 		if (keys.length == 1) {
+			
 			return jsonObject.put(currentKey, value);
 		} else if (!jsonObject.has(currentKey)) {
 			throw new Exception(currentKey + "is not a valid key.");
@@ -145,7 +135,7 @@ public class TestAutomationUtil {
 
 	public static TestCaseInfo updatJsonWithTestDataMaster(String jsonpath1, String csvPath, String mapperpath,
 			String resultcsvPath, String expectedmapperpath) throws Exception {
-		JSONObject jsonObject = TestAutomationUtil.getJsonObjectnew(jsonpath1);
+		JSONObject jsonObject = TestAutomationUtil.getJsonObject(jsonpath1);
 		Map<String, Map<String, Object>> attributeValues = TestAutomationUtil.fetchCsvTestData(csvPath);
 		Map<String, String> attributePaths = TestAutomationUtil.fetchAttrPaths(mapperpath);
 
@@ -159,7 +149,7 @@ public class TestAutomationUtil {
 
 	public static ResponseBody methodForPost(String uri, String node, JSONObject requestJsonObject) throws Exception {
 
-		return given().contentType(ContentType.JSON).body(requestJsonObject).post(uri + "/" + node).then().extract()
+		return given().contentType(ContentType.JSON).body(requestJsonObject.toString()).post(uri + "/" + node).then().extract()
 				.response().getBody();
 
 	}
@@ -168,30 +158,57 @@ public class TestAutomationUtil {
 			Map<String, String> responseAttributePaths) {
 		System.out.println("POST Response\n" + response.asString());
 		for (String attr : expectedAttributeValues.keySet()) {
-			if(responseAttributePaths.get(attr)!=null)
-			{
-			String attrPath = responseAttributePaths.get(attr).replace("/", ".");
+			if (responseAttributePaths.get(attr) != null) {
+				String attrPath = responseAttributePaths.get(attr).replace("/", ".");
 
-			Object actualResponse = response.jsonPath().get(attrPath);
-			Assert.assertEquals(actualResponse.toString(), expectedAttributeValues.get(attr).toString(), "Sample message ");
+				Object actualResponse = response.jsonPath().get(attrPath);
+				Assert.assertEquals(actualResponse, expectedAttributeValues.get(attr),
+						"Sample message ");
 			}
 		}
 
 	}
 
 	public static Map<String, String> generateFileNames(String methodName) {
+
 		Map<String, String> mapOfPaths = new HashMap<String, String>();
-		csvPath = "C:\\Schemax\\Sample JSON\\" + methodName + "_InputTestData.csv";
-		jsonpath1 = "C:\\Schemax\\Sample JSON\\" + methodName + "_Input.json";
-		mapperpath = "C:\\Schemax\\Sample JSON\\" + methodName + "_InputAttributeMapper.csv";
-		resultcsvPath = "C:\\Schemax\\Sample JSON\\" + methodName + "_OutputExpectedData.csv";
-		expectedmapperpath = "C:\\Schemax\\Sample JSON\\" + methodName + "_OutputAttributeMapper.csv";
-		mapOfPaths.put("csvPath", csvPath);
-		mapOfPaths.put("jsonpath1", jsonpath1);
-		mapOfPaths.put("mapperpath", mapperpath);
-		mapOfPaths.put("resultcsvPath", resultcsvPath);
-		mapOfPaths.put("expectedmapperpath", expectedmapperpath);
+		String inputcsvPath = "C:\\Schemax\\Sample JSON\\" + methodName + "_InputTestData.csv";
+		String inputJsonPath = "C:\\Schemax\\Sample JSON\\" + methodName + "_Input.json";
+		String mapperPath = "C:\\Schemax\\Sample JSON\\" + methodName + "_InputAttributeMapper.csv";
+		String resultcsvPath = "C:\\Schemax\\Sample JSON\\" + methodName + "_OutputExpectedData.csv";
+		String expectedMapperPath = "C:\\Schemax\\Sample JSON\\" + methodName + "_OutputAttributeMapper.csv";
+		
+		mapOfPaths.put("inputcsvpathkey", inputcsvPath);
+		mapOfPaths.put("inputJsonpathkey", inputJsonPath);
+		mapOfPaths.put("mapperpathkey", mapperPath);
+		mapOfPaths.put("resultcsvpathkey", resultcsvPath);
+		mapOfPaths.put("expectedmapperpathkey", expectedMapperPath);
 
 		return mapOfPaths;
 	}
+	
+	public static Object parseString(String value)
+	{
+		
+		 if (value.matches("[+-]?[0-9][0-9]*"))
+		 {
+			return  Integer.parseInt(value);
+		 }
+		 else if (value.toLowerCase().matches("true|false"))
+		 {
+			return Boolean.parseBoolean(value);
+		 }
+		 else
+		 {
+			return value;
+		 }
+		
+	}
+			
+		
+		        
+		    
+		
+	
+	
 }

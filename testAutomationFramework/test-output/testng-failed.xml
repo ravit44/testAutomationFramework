@@ -5,8 +5,7 @@
     <classes>
       <class name="com.schemaxtech.testAutomationFrameworkTest.TestAutomationUtilTest">
         <methods>
-          <include name="postSampleTest"/>
-          <include name="postSampleTest1"/>
+          <include name="postSampleTest" invocation-numbers="0 1"/>
         </methods>
       </class> <!-- com.schemaxtech.testAutomationFrameworkTest.TestAutomationUtilTest -->
     </classes>

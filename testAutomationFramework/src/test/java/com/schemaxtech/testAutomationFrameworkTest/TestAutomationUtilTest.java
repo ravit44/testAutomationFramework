@@ -23,7 +23,7 @@ public class TestAutomationUtilTest {
 		
 		Map<String,String> mapForPathProvider=new HashMap<String,String>();
 		mapForPathProvider=TestAutomationUtil.generateFileNames(method.getName());
-		TestCaseInfo testcaseinfo=TestAutomationUtil.updatJsonWithTestDataMaster(mapForPathProvider.get("jsonpath1"), mapForPathProvider.get("csvPath"),  mapForPathProvider.get("mapperpath"), mapForPathProvider.get("resultcsvPath"),  mapForPathProvider.get("expectedmapperpath"));
+		TestCaseInfo testcaseinfo=TestAutomationUtil.updatJsonWithTestDataMaster(mapForPathProvider.get("inputJsonpathkey"), mapForPathProvider.get("inputcsvpathkey"),  mapForPathProvider.get("mapperpathkey"), mapForPathProvider.get("resultcsvpathkey"),  mapForPathProvider.get("expectedmapperpathkey"));
 		Object[][] data = new Object[testcaseinfo.requestJsonObject.size()][4];
 		int i=0;
 		for (String testcase: testcaseinfo.requestJsonObject.keySet())
@@ -48,6 +48,7 @@ public class TestAutomationUtilTest {
 	
 		TestAutomationUtil.verifyResponse(response, expectedAttributeValues, responseAttributePaths);
 	}
+	
 	
 //	@Test(dataProvider="sampleDataProvider",dependsOnMethods="postSampleTest")
 //	public void postSampleTest1(String testCase, JSONObject requestJsonObject,Map<String, Object> expectedAttributeValues,Map<String,String> responseAttributePaths) throws Exception {

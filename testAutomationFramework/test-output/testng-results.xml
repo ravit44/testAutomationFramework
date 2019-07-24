@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="1" failed="0" ignored="0" total="3" passed="2">
+<testng-results skipped="0" failed="2" ignored="0" total="2" passed="0">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="6138" started-at="2019-07-20T17:38:12Z" finished-at="2019-07-20T17:38:18Z">
+  <suite name="Default suite" duration-ms="118293" started-at="2019-07-24T20:41:25Z" finished-at="2019-07-24T20:43:24Z">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="6138" started-at="2019-07-20T17:38:12Z" finished-at="2019-07-20T17:38:18Z">
+    <test name="Default test" duration-ms="118293" started-at="2019-07-24T20:41:25Z" finished-at="2019-07-24T20:43:24Z">
       <class name="com.schemaxtech.testAutomationFrameworkTest.TestAutomationUtilTest">
-        <test-method status="PASS" signature="postSampleTest(java.lang.String, org.json.JSONObject, java.util.Map, java.util.Map)[pri:0, instance:com.schemaxtech.testAutomationFrameworkTest.TestAutomationUtilTest@598067a5]" name="postSampleTest" duration-ms="5496" started-at="2019-07-20T17:38:12Z" data-provider="sampleDataProvider" finished-at="2019-07-20T17:38:17Z">
+        <test-method status="FAIL" signature="postSampleTest(java.lang.String, org.json.JSONObject, java.util.Map, java.util.Map)[pri:0, instance:com.schemaxtech.testAutomationFrameworkTest.TestAutomationUtilTest@7334aada]" name="postSampleTest" duration-ms="101298" started-at="2019-07-24T20:41:38Z" data-provider="sampleDataProvider" finished-at="2019-07-24T20:43:19Z">
           <params>
             <param index="0">
               <value>
@@ -30,10 +30,50 @@
               </value>
             </param>
           </params>
+          <exception class="java.lang.AssertionError">
+            <message>
+              <![CDATA[Sample message  expected [false] but found [null]]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.AssertionError: Sample message  expected [false] but found [null]
+at org.testng.Assert.fail(Assert.java:96)
+at org.testng.Assert.failNotEquals(Assert.java:776)
+at org.testng.Assert.assertEqualsImpl(Assert.java:132)
+at org.testng.Assert.assertEquals(Assert.java:118)
+at com.schemaxtech.testAutomationFramework.TestAutomationUtil.verifyResponse(TestAutomationUtil.java:165)
+at com.schemaxtech.testAutomationFrameworkTest.TestAutomationUtilTest.postSampleTest(TestAutomationUtilTest.java:49)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+at java.lang.reflect.Method.invoke(Unknown Source)
+at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:124)
+at org.testng.internal.Invoker.invokeMethod(Invoker.java:583)
+at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:719)
+at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:989)
+at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:125)
+at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:109)
+at org.testng.TestRunner.privateRun(TestRunner.java:648)
+at org.testng.TestRunner.run(TestRunner.java:505)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:455)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:450)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:415)
+at org.testng.SuiteRunner.run(SuiteRunner.java:364)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:84)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1208)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1137)
+at org.testng.TestNG.runSuites(TestNG.java:1049)
+at org.testng.TestNG.run(TestNG.java:1017)
+at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.AssertionError -->
           <reporter-output>
           </reporter-output>
         </test-method> <!-- postSampleTest -->
-        <test-method status="PASS" signature="postSampleTest(java.lang.String, org.json.JSONObject, java.util.Map, java.util.Map)[pri:0, instance:com.schemaxtech.testAutomationFrameworkTest.TestAutomationUtilTest@598067a5]" name="postSampleTest" duration-ms="516" started-at="2019-07-20T17:38:17Z" data-provider="sampleDataProvider" finished-at="2019-07-20T17:38:18Z">
+        <test-method status="FAIL" signature="postSampleTest(java.lang.String, org.json.JSONObject, java.util.Map, java.util.Map)[pri:0, instance:com.schemaxtech.testAutomationFrameworkTest.TestAutomationUtilTest@7334aada]" name="postSampleTest" duration-ms="4000" started-at="2019-07-24T20:43:19Z" data-provider="sampleDataProvider" finished-at="2019-07-24T20:43:23Z">
           <params>
             <param index="0">
               <value>
@@ -56,22 +96,26 @@
               </value>
             </param>
           </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- postSampleTest -->
-        <test-method status="SKIP" signature="postSampleTest1(java.lang.String, org.json.JSONObject, java.util.Map, java.util.Map)[pri:0, instance:com.schemaxtech.testAutomationFrameworkTest.TestAutomationUtilTest@598067a5]" name="postSampleTest1" duration-ms="0" started-at="2019-07-20T17:38:18Z" data-provider="sampleDataProvider" depends-on-methods="com.schemaxtech.testAutomationFrameworkTest.TestAutomationUtilTest.postSampleTest" finished-at="2019-07-20T17:38:18Z">
-          <exception class="java.lang.RuntimeException">
+          <exception class="java.lang.AssertionError">
             <message>
-              <![CDATA[java.io.FileNotFoundException: C:\Schemax\Sample JSON\postSampleTest1_Input.json (The system cannot find the file specified)]]>
+              <![CDATA[Sample message  expected [false] but found [null]]]>
             </message>
             <full-stacktrace>
-              <![CDATA[java.lang.RuntimeException: java.io.FileNotFoundException: C:\Schemax\Sample JSON\postSampleTest1_Input.json (The system cannot find the file specified)
-at org.testng.internal.MethodInvocationHelper.invokeMethodNoCheckedException(MethodInvocationHelper.java:49)
-at org.testng.internal.MethodInvocationHelper.invokeDataProvider(MethodInvocationHelper.java:131)
-at org.testng.internal.Parameters.handleParameters(Parameters.java:706)
-at org.testng.internal.ParameterHandler.handleParameters(ParameterHandler.java:49)
-at org.testng.internal.ParameterHandler.createParameters(ParameterHandler.java:37)
-at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:924)
+              <![CDATA[java.lang.AssertionError: Sample message  expected [false] but found [null]
+at org.testng.Assert.fail(Assert.java:96)
+at org.testng.Assert.failNotEquals(Assert.java:776)
+at org.testng.Assert.assertEqualsImpl(Assert.java:132)
+at org.testng.Assert.assertEquals(Assert.java:118)
+at com.schemaxtech.testAutomationFramework.TestAutomationUtil.verifyResponse(TestAutomationUtil.java:165)
+at com.schemaxtech.testAutomationFrameworkTest.TestAutomationUtilTest.postSampleTest(TestAutomationUtilTest.java:49)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+at java.lang.reflect.Method.invoke(Unknown Source)
+at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:124)
+at org.testng.internal.Invoker.invokeMethod(Invoker.java:583)
+at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:719)
+at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:989)
 at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:125)
 at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:109)
 at org.testng.TestRunner.privateRun(TestRunner.java:648)
@@ -89,28 +133,12 @@ at org.testng.TestNG.run(TestNG.java:1017)
 at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
 at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
 at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
-Caused by: java.io.FileNotFoundException: C:\Schemax\Sample JSON\postSampleTest1_Input.json (The system cannot find the file specified)
-at java.io.FileInputStream.open0(Native Method)
-at java.io.FileInputStream.open(Unknown Source)
-at java.io.FileInputStream.<init>(Unknown Source)
-at java.io.FileInputStream.<init>(Unknown Source)
-at com.schemaxtech.testAutomationFramework.TestAutomationUtil.getJsonObjectnew(TestAutomationUtil.java:63)
-at com.schemaxtech.testAutomationFramework.TestAutomationUtil.updatJsonWithTestDataMaster(TestAutomationUtil.java:148)
-at com.schemaxtech.testAutomationFrameworkTest.TestAutomationUtilTest.sampleDataProvider(TestAutomationUtilTest.java:26)
-at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
-at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
-at java.lang.reflect.Method.invoke(Unknown Source)
-at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:124)
-at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:74)
-at org.testng.internal.MethodInvocationHelper.invokeMethodNoCheckedException(MethodInvocationHelper.java:45)
-... 22 more
 ]]>
             </full-stacktrace>
-          </exception> <!-- java.lang.RuntimeException -->
+          </exception> <!-- java.lang.AssertionError -->
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- postSampleTest1 -->
+        </test-method> <!-- postSampleTest -->
       </class> <!-- com.schemaxtech.testAutomationFrameworkTest.TestAutomationUtilTest -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
