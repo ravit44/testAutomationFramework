@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.json.JSONObject;
+import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -43,11 +44,11 @@ public class TestAutomationUtilTest {
 	@Test(dataProvider="sampleDataProvider")
 	public void postSampleTest(String testCase, JSONObject requestJsonObject,Map<String, Object> expectedAttributeValues,Map<String,String> responseAttributePaths) throws Exception {
 		 
-		
 		ResponseBody response= TestAutomationUtil.methodForPost("https://reqres.in", "api/users",requestJsonObject);
 	
 		TestAutomationUtil.verifyResponse(response, expectedAttributeValues, responseAttributePaths);
 	}
+	
 	
 	
 

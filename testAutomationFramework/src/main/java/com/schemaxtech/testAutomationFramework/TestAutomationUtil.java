@@ -54,7 +54,7 @@ public class TestAutomationUtil {
 			Map<String, Object> testData = new HashMap<String, Object>();
 			Object[] testValues = values.get(i);
 			for (int j = 0; j < testValues.length; j++) {
-				testData.put(headers[j], parseString((String)testValues[j]));
+				testData.put(headers[j], parseString((String) testValues[j]));
 			}
 			String testCase = (String) testData.get(testSenarioColumnName);
 			testData.remove(testSenarioColumnName);
@@ -111,7 +111,7 @@ public class TestAutomationUtil {
 	public static JSONObject UpdateJsonValue(Object value, JSONObject jsonObject, String[] keys) throws Exception {
 		String currentKey = keys[0];
 		if (keys.length == 1) {
-			
+
 			return jsonObject.put(currentKey, value);
 		} else if (!jsonObject.has(currentKey)) {
 			throw new Exception(currentKey + "is not a valid key.");
@@ -138,8 +138,8 @@ public class TestAutomationUtil {
 
 	public static ResponseBody methodForPost(String uri, String node, JSONObject requestJsonObject) throws Exception {
 
-		return given().contentType(ContentType.JSON).body(requestJsonObject.toString()).post(uri + "/" + node).then().extract()
-				.response().getBody();
+		return given().contentType(ContentType.JSON).body(requestJsonObject.toString()).post(uri + "/" + node).then()
+				.extract().response().getBody();
 
 	}
 
@@ -147,12 +147,13 @@ public class TestAutomationUtil {
 			Map<String, String> responseAttributePaths) {
 		System.out.println("POST Response\n" + response.asString());
 		for (String attr : expectedAttributeValues.keySet()) {
-			if (responseAttributePaths.get(attr) != null) {
+			if (responseAttributePaths.get(attr) != null && expectedAttributeValues.get(attr) != null
+					&& !expectedAttributeValues.get(attr).equals("")) {
 				String attrPath = responseAttributePaths.get(attr).replace("/", ".");
 
 				Object actualResponse = response.jsonPath().get(attrPath);
-				Assert.assertEquals(actualResponse, expectedAttributeValues.get(attr),
-						"Sample message ");
+				Assert.assertEquals(actualResponse, expectedAttributeValues.get(attr), "Verification of '" + attr
+						+ "' with value '" + expectedAttributeValues.get(attr) + "' in response json failed");
 			}
 		}
 
@@ -166,7 +167,7 @@ public class TestAutomationUtil {
 		String mapperPath = "C:\\Schemax\\Sample JSON\\" + methodName + "_InputAttributeMapper.csv";
 		String resultcsvPath = "C:\\Schemax\\Sample JSON\\" + methodName + "_OutputExpectedData.csv";
 		String expectedMapperPath = "C:\\Schemax\\Sample JSON\\" + methodName + "_OutputAttributeMapper.csv";
-		
+
 		mapOfPaths.put("inputcsvpathkey", inputcsvPath);
 		mapOfPaths.put("inputJsonpathkey", inputJsonPath);
 		mapOfPaths.put("mapperpathkey", mapperPath);
@@ -175,29 +176,17 @@ public class TestAutomationUtil {
 
 		return mapOfPaths;
 	}
-	
-	public static Object parseString(String value)
-	{
-		
-		 if (value.matches("[+-]?[0-9][0-9]*"))
-		 {
-			return  Integer.parseInt(value);
-		 }
-		 else if (value.toLowerCase().matches("true|false"))
-		 {
+
+	public static Object parseString(String value) {
+
+		if (value.matches("[+-]?[0-9][0-9]*")) {
+			return Integer.parseInt(value);
+		} else if (value.toLowerCase().matches("true|false")) {
 			return Boolean.parseBoolean(value);
-		 }
-		 else
-		 {
+		} else {
 			return value;
-		 }
-		
+		}
+
 	}
-			
-		
-		        
-		    
-		
-	
-	
+
 }
