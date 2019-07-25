@@ -1,6 +1,0 @@
-TestCase_Id,company_code,company_name,first_name,mobile_no,Country,date_of_birth
-TC_SFCS_CMP_001,7779,Schemax,User,98456321,IND,2/5/2019
-TC_SFCS_cmp002,777,Schemax,SuperUser,98456321,IND,2/6/2010
-TC_SFCS_003,,,,,,
-TC_SFCS_004,,Schemaxtech,User1,123456789,CA,2/5/1989
-TC_SFCS_005,789,TechSchema,Demousre,123654789,KA,6/21/1905
