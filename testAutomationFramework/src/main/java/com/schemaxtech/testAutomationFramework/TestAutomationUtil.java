@@ -190,7 +190,7 @@ public class TestAutomationUtil {
 	}
 
 	public static String getPropertyByName(String propertyName) throws IOException {
-		FileReader reader = new FileReader("Properties");
+		FileReader reader = new FileReader("properties");
 
 		Properties p = new Properties();
 		p.load(reader);
