@@ -3,6 +3,7 @@ package com.schemaxtech.testAutomationFramework;
 import static io.restassured.RestAssured.given;
 
 import java.io.FileInputStream;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.Reader;
@@ -12,6 +13,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
 
 import org.json.JSONObject;
 import org.json.JSONTokener;
@@ -44,9 +46,10 @@ public class TestAutomationUtil {
 	 * 
 	 * @param csvPath relative path of CSV file
 	 * @return Map object of test data
+	 * @throws IOException
 	 */
 
-	public static Map<String, Map<String, Object>> fetchCsvTestData(final String csvPath) {
+	public static Map<String, Map<String, Object>> fetchCsvTestData(final String csvPath) throws IOException {
 		Map<String, Map<String, Object>> attributeValues = new HashMap<String, Map<String, Object>>();
 		List<String[]> values = readCsv(csvPath);
 		String[] headers = (String[]) values.get(0);
@@ -54,7 +57,13 @@ public class TestAutomationUtil {
 			Map<String, Object> testData = new HashMap<String, Object>();
 			Object[] testValues = values.get(i);
 			for (int j = 0; j < testValues.length; j++) {
-				testData.put(headers[j], parseString((String) testValues[j]));
+				// Adding code for rerun using same data
+				if (testValues[j].toString().contains("{{XS}}")) {
+					testValues[j] = testValues[j].toString().replace("{{XS}}", getPropertyByName("suffix"));
+					testData.put(headers[j], parseString((String) testValues[j]));
+				} else {
+					testData.put(headers[j], parseString((String) testValues[j]));
+				}
 			}
 			String testCase = (String) testData.get(testSenarioColumnName);
 			testData.remove(testSenarioColumnName);
@@ -86,12 +95,10 @@ public class TestAutomationUtil {
 	}
 
 	// Updating JSON values with the data in excel
-	public static Map<String, JSONObject> updatJsonWithTestData(Map<String, Map<String, Object>> attributeValues,
+	public static Map<String, JSONObject> updateJsonWithTestData(Map<String, Map<String, Object>> attributeValues,
 			Map<String, String> attrPaths, JSONObject jsonObject) throws Exception {
 
-		JSONObject rootNode = new JSONObject();
-		rootNode.similar(jsonObject);
-
+		JSONObject rootNode = new JSONObject(jsonObject);
 		Map<String, JSONObject> inputtestData = new HashMap<String, JSONObject>();
 		for (String testname : attributeValues.keySet()) {
 			JSONObject tempJson = new JSONObject();
@@ -101,25 +108,25 @@ public class TestAutomationUtil {
 
 			}
 			inputtestData.put(testname, tempJson);
-			rootNode = jsonObject;
+			rootNode = new JSONObject(jsonObject);
 		}
 
 		return inputtestData;
 	}
 
 	// recursive method to replace all the values
-	public static JSONObject UpdateJsonValue(Object value, JSONObject jsonObject, String[] keys) throws Exception {
+	public static JSONObject UpdateJsonValue(Object value, JSONObject recjsonObject, String[] keys) throws Exception {
 		String currentKey = keys[0];
 		if (keys.length == 1) {
 
-			return jsonObject.put(currentKey, value);
-		} else if (!jsonObject.has(currentKey)) {
+			return recjsonObject.put(currentKey, value);
+		} else if (!recjsonObject.has(currentKey)) {
 			throw new Exception(currentKey + "is not a valid key.");
 		}
-		JSONObject nestedJsonObjectVal = jsonObject.getJSONObject(currentKey);
+		JSONObject nestedJsonObjectVal = recjsonObject.getJSONObject(currentKey);
 		String[] remainingKeys = Arrays.copyOfRange(keys, 1, keys.length);
 		JSONObject updatedNestedValue = UpdateJsonValue(value, nestedJsonObjectVal, remainingKeys);
-		return jsonObject.put(currentKey, updatedNestedValue);
+		return recjsonObject.put(currentKey, updatedNestedValue);
 	}
 
 	public static TestCaseInfo updatJsonWithTestDataMaster(String jsonpath1, String csvPath, String mapperpath,
@@ -131,7 +138,7 @@ public class TestAutomationUtil {
 		Map<String, Map<String, Object>> attributeValuesres = TestAutomationUtil.fetchCsvTestData(resultcsvPath);
 		Map<String, String> attributePathsres = TestAutomationUtil.fetchAttrPaths(expectedmapperpath);
 
-		TestCaseInfo dataForTest = new TestCaseInfo(updatJsonWithTestData(attributeValues, attributePaths, jsonObject),
+		TestCaseInfo dataForTest = new TestCaseInfo(updateJsonWithTestData(attributeValues, attributePaths, jsonObject),
 				attributePathsres, attributeValuesres);
 		return dataForTest;
 	}
@@ -150,23 +157,28 @@ public class TestAutomationUtil {
 			if (responseAttributePaths.get(attr) != null && expectedAttributeValues.get(attr) != null
 					&& !expectedAttributeValues.get(attr).equals("")) {
 				String attrPath = responseAttributePaths.get(attr).replace("/", ".");
-
 				Object actualResponse = response.jsonPath().get(attrPath);
-				Assert.assertEquals(actualResponse, expectedAttributeValues.get(attr), "Verification of '" + attr
-						+ "' with value '" + expectedAttributeValues.get(attr) + "' in response json failed");
+				Assert.assertEquals(parseString((String) actualResponse),
+						parseString((String) expectedAttributeValues.get(attr)), "Verification of '" + attr
+								+ "' with value '" + expectedAttributeValues.get(attr) + "' in response json failed");
+
 			}
 		}
 
 	}
 
-	public static Map<String, String> generateFileNames(String methodName) {
+	public static Map<String, String> generateFileNames(String methodName) throws IOException {
 
 		Map<String, String> mapOfPaths = new HashMap<String, String>();
-		String inputcsvPath = "C:\\Schemax\\Sample JSON\\" + methodName + "_InputTestData.csv";
-		String inputJsonPath = "C:\\Schemax\\Sample JSON\\" + methodName + "_Input.json";
-		String mapperPath = "C:\\Schemax\\Sample JSON\\" + methodName + "_InputAttributeMapper.csv";
-		String resultcsvPath = "C:\\Schemax\\Sample JSON\\" + methodName + "_OutputExpectedData.csv";
-		String expectedMapperPath = "C:\\Schemax\\Sample JSON\\" + methodName + "_OutputAttributeMapper.csv";
+		String inputcsvPath = getPropertyByName("baseFolder") + "\\" + methodName + "\\" + methodName
+				+ "_InputTestData.csv";
+		String inputJsonPath = getPropertyByName("baseFolder") + "\\" + methodName + "\\" + methodName + "_Input.json";
+		String mapperPath = getPropertyByName("baseFolder") + "\\" + methodName + "\\" + methodName
+				+ "_InputAttributeMapper.csv";
+		String resultcsvPath = getPropertyByName("baseFolder") + "\\" + methodName + "\\" + methodName
+				+ "_OutputExpectedData.csv";
+		String expectedMapperPath = getPropertyByName("baseFolder") + "\\" + methodName + "\\" + methodName
+				+ "_OutputAttributeMapper.csv";
 
 		mapOfPaths.put("inputcsvpathkey", inputcsvPath);
 		mapOfPaths.put("inputJsonpathkey", inputJsonPath);
@@ -175,6 +187,15 @@ public class TestAutomationUtil {
 		mapOfPaths.put("expectedmapperpathkey", expectedMapperPath);
 
 		return mapOfPaths;
+	}
+
+	public static String getPropertyByName(String propertyName) throws IOException {
+		FileReader reader = new FileReader("Properties");
+
+		Properties p = new Properties();
+		p.load(reader);
+		return p.getProperty(propertyName);
+
 	}
 
 	public static Object parseString(String value) {
