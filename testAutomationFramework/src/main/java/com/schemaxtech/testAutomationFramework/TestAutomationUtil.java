@@ -74,6 +74,13 @@ public class TestAutomationUtil {
 
 	}
 
+	/**
+	 * It fetches mapper paths as Map object from a CSV file
+	 * 
+	 * @param mapperPath relative path of Mapper file
+	 * @return Map object of Mappper Paths
+	 */
+
 	public static Map<String, String> fetchAttrPaths(final String mapperPath) {
 		Map<String, String> attrPaths = new HashMap<String, String>();
 		List<String[]> values = readCsv(mapperPath);
@@ -83,6 +90,12 @@ public class TestAutomationUtil {
 		return attrPaths;
 	}
 
+	/**
+	 * It fetches the data from CSV file
+	 * 
+	 * @param csvPath relative path of CSV file
+	 * @return CSV Reader object
+	 */
 	@SuppressWarnings("resource")
 	public static List<String[]> readCsv(final String csvPath) {
 		try {
@@ -95,7 +108,15 @@ public class TestAutomationUtil {
 		return null;
 	}
 
-	// Updating JSON values with the data in excel
+	/**
+	 * It constructs JSON Object for all the test cases
+	 * 
+	 * @param attributeValues Map object of Input test data
+	 * @param attrPaths       Map Object of Input Attribute Paths
+	 * @param jsonObject      JSONObject from Input Json File
+	 * @return Map of JSON Object for each test case
+	 * @throws Exception
+	 */
 	public static Map<String, JSONObject> updateJsonWithTestData(Map<String, Map<String, Object>> attributeValues,
 			Map<String, String> attrPaths, JSONObject jsonObject) throws Exception {
 
@@ -115,7 +136,16 @@ public class TestAutomationUtil {
 		return inputtestData;
 	}
 
-	// recursive method to replace all the values
+	/**
+	 * It replaces each node recursively in JSON object and constructs the JSON
+	 * object with data
+	 * 
+	 * @param value         input value to be updated in JSON Object
+	 * @param recjsonObject input JSONObject
+	 * @param keys
+	 * @return JSONObject with updated value
+	 * @throws Exception
+	 */
 	public static JSONObject UpdateJsonValue(Object value, JSONObject recjsonObject, String[] keys) throws Exception {
 		String currentKey = keys[0];
 		if (keys.length == 1) {
@@ -130,20 +160,42 @@ public class TestAutomationUtil {
 		return recjsonObject.put(currentKey, updatedNestedValue);
 	}
 
-	public static TestCaseInfo updatJsonWithTestDataMaster(String jsonpath1, String csvPath, String mapperpath,
-			String resultcsvPath, String expectedmapperpath) throws Exception {
-		JSONObject jsonObject = TestAutomationUtil.getJsonObject(jsonpath1);
-		Map<String, Map<String, Object>> attributeValues = TestAutomationUtil.fetchCsvTestData(csvPath);
-		Map<String, String> attributePaths = TestAutomationUtil.fetchAttrPaths(mapperpath);
+	/**
+	 * It constructs data as TestCaseInfo object for the data provider
+	 * 
+	 * @param inputjsonPath      relative path of the input JSON file
+	 * @param inputcsvpath       relative path of the input CSV file
+	 * @param inputmapperpath    relative path of the input mapper path
+	 * @param outputcsvPath      relative path of the expected CSV file
+	 * @param expectedmapperpath relative path of the expected mapper file
+	 * @return TestCaseInfo Object
+	 * @throws Exception
+	 */
 
-		Map<String, Map<String, Object>> attributeValuesres = TestAutomationUtil.fetchCsvTestData(resultcsvPath);
-		Map<String, String> attributePathsres = TestAutomationUtil.fetchAttrPaths(expectedmapperpath);
+	public static TestCaseInfo updatJsonWithTestDataMaster(String inputjsonPath, String inputcsvpath,
+			String inputmapperpath, String outputcsvPath, String expectedmapperpath) throws Exception {
+		JSONObject inputJsonObject = TestAutomationUtil.getJsonObject(inputjsonPath);
+		Map<String, Map<String, Object>> inputAttributeValues = TestAutomationUtil.fetchCsvTestData(inputcsvpath);
+		Map<String, String> inputAttributePaths = TestAutomationUtil.fetchAttrPaths(inputmapperpath);
 
-		TestCaseInfo dataForTest = new TestCaseInfo(updateJsonWithTestData(attributeValues, attributePaths, jsonObject),
-				attributePathsres, attributeValuesres);
-		return dataForTest;
+		Map<String, Map<String, Object>> outputAttributeValues = TestAutomationUtil.fetchCsvTestData(outputcsvPath);
+		Map<String, String> outputAttributePaths = TestAutomationUtil.fetchAttrPaths(expectedmapperpath);
+
+		TestCaseInfo dataForTestCase = new TestCaseInfo(
+				updateJsonWithTestData(inputAttributeValues, inputAttributePaths, inputJsonObject),
+				outputAttributePaths, outputAttributeValues);
+		return dataForTestCase;
 	}
 
+	/**
+	 * It fetches the data from a service using post method
+	 * 
+	 * @param uri               path of the API uri
+	 * @param node              node path of the API
+	 * @param requestJsonObject input JSONObject
+	 * @return ResponseBody of the response
+	 * @throws Exception
+	 */
 	public static ResponseBody methodForPost(String uri, String node, JSONObject requestJsonObject) throws Exception {
 
 		return given().contentType(ContentType.JSON).body(requestJsonObject.toString()).post(uri + "/" + node).then()
@@ -151,11 +203,13 @@ public class TestAutomationUtil {
 
 	}
 
-	public static ResponseBody methodForGet(String uri, String node, JSONObject requestJsonObject) throws Exception {
-
-		return given().contentType(ContentType.JSON).get(uri + "/" + node).then().extract().response().getBody();
-
-	}
+	/**
+	 * It asserts the response of the API with the expected values
+	 * 
+	 * @param response                ResponseBody type object from the service call
+	 * @param expectedAttributeValues Map object of expected values
+	 * @param responseAttributePaths  Map object of expected paths
+	 */
 
 	@SuppressWarnings("unchecked")
 	public static void verifyResponse(ResponseBody response, Map<String, Object> expectedAttributeValues,
@@ -182,8 +236,8 @@ public class TestAutomationUtil {
 							"Verification of '" + attr + "' with value '" + expectedAttributeValues.get(attr).toString()
 									+ "' in response json failed");
 				} else {
-					Assert.assertEquals(parseString((String) actualResponse),
-							parseString((String) expectedAttributeValues.get(attr)),
+					Assert.assertEquals(parseString(actualResponse.toString()),
+							parseString( expectedAttributeValues.get(attr).toString()),
 							"Verification of '" + attr + "' with value '" + expectedAttributeValues.get(attr)
 									+ "' in response json failed");
 				}
@@ -193,6 +247,14 @@ public class TestAutomationUtil {
 
 	}
 
+	/**
+	 * It generates the file paths dynamically using the base folder and the test
+	 * case name
+	 * 
+	 * @param methodName name of the test method
+	 * @return map object of all the paths
+	 * @throws IOException
+	 */
 	public static Map<String, String> generateFileNames(String methodName) throws IOException {
 
 		Map<String, String> mapOfPaths = new HashMap<String, String>();
@@ -215,6 +277,13 @@ public class TestAutomationUtil {
 		return mapOfPaths;
 	}
 
+	/**
+	 * It fetches the property value based on the name
+	 * 
+	 * @param propertyName name of the property
+	 * @return value of the property
+	 * @throws IOException
+	 */
 	public static String getPropertyByName(String propertyName) throws IOException {
 		FileReader reader = new FileReader("properties");
 
@@ -224,6 +293,12 @@ public class TestAutomationUtil {
 
 	}
 
+	/**
+	 * It parses the string to other data types based on value
+	 * 
+	 * @param value string value that needs to be parsed
+	 * @return parsed value
+	 */
 	public static Object parseString(String value) {
 
 		if (value.matches("[+-]?[0-9][0-9]*")) {

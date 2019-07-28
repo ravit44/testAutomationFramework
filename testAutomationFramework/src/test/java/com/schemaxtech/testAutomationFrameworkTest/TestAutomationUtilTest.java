@@ -19,7 +19,12 @@ import io.restassured.response.ResponseBody;
 
 public class TestAutomationUtilTest {
 	
-	
+	/**
+	 * It generates a two dimensional array object for all the test methods
+	 * @param method test name
+	 * @return two dimensional array object
+	 * @throws Exception
+	 */
 			
 	@DataProvider(name="sampleDataProvider")
 	public  Object[][] sampleDataProvider(Method method) throws Exception {
@@ -42,15 +47,22 @@ public class TestAutomationUtilTest {
 		return data;
 	}
 	
+	/**
+	 * Sample Test method 
+	 * @param testCase
+	 * @param requestJsonObject
+	 * @param expectedAttributeValues
+	 * @param responseAttributePaths
+	 * @throws Exception
+	 */
 	@SuppressWarnings("rawtypes")
 	@Test(dataProvider="sampleDataProvider")
 	public void postSampleTest(String testCase, JSONObject requestJsonObject,Map<String, Object> expectedAttributeValues,Map<String,String> responseAttributePaths) throws Exception {
 		  
 	    
-		ResponseBody response= TestAutomationUtil.methodForGet("https://jsonplaceholder.typicode.com", "posts",null);
-		
-	
-		TestAutomationUtil.verifyResponse((ResponseBody)response, expectedAttributeValues, responseAttributePaths);
+		ResponseBody response= TestAutomationUtil.methodForPost("https://jsonplaceholder.typicode.com", "posts",requestJsonObject);
+			
+		TestAutomationUtil.verifyResponse(response, expectedAttributeValues, responseAttributePaths);
 	}
 	
 	
