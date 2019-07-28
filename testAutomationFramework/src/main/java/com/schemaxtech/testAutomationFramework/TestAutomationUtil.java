@@ -9,6 +9,7 @@ import java.io.InputStream;
 import java.io.Reader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -150,17 +151,42 @@ public class TestAutomationUtil {
 
 	}
 
+	public static ResponseBody methodForGet(String uri, String node, JSONObject requestJsonObject) throws Exception {
+
+		return given().contentType(ContentType.JSON).get(uri + "/" + node).then().extract().response().getBody();
+
+	}
+
+	@SuppressWarnings("unchecked")
 	public static void verifyResponse(ResponseBody response, Map<String, Object> expectedAttributeValues,
 			Map<String, String> responseAttributePaths) {
+		int j = 0;
 		System.out.println("POST Response\n" + response.asString());
 		for (String attr : expectedAttributeValues.keySet()) {
 			if (responseAttributePaths.get(attr) != null && expectedAttributeValues.get(attr) != null
 					&& !expectedAttributeValues.get(attr).equals("")) {
 				String attrPath = responseAttributePaths.get(attr).replace("/", ".");
 				Object actualResponse = response.jsonPath().get(attrPath);
-				Assert.assertEquals(parseString((String) actualResponse),
-						parseString((String) expectedAttributeValues.get(attr)), "Verification of '" + attr
-								+ "' with value '" + expectedAttributeValues.get(attr) + "' in response json failed");
+				if (actualResponse.getClass().getSimpleName().contains("Array")) {
+					List<Object> responseArray = new ArrayList<>();
+					responseArray = (List<Object>) actualResponse;
+					if (j == 0) {
+						for (int i = 0; i < responseArray.size(); i++) {
+							if (expectedAttributeValues.get(attr).toString().equals(responseArray.get(i).toString())) {
+								j = i;
+								break;
+							}
+						}
+					}
+					Assert.assertEquals(responseArray.get(j).toString(), expectedAttributeValues.get(attr).toString(),
+							"Verification of '" + attr + "' with value '" + expectedAttributeValues.get(attr).toString()
+									+ "' in response json failed");
+				} else {
+					Assert.assertEquals(parseString((String) actualResponse),
+							parseString((String) expectedAttributeValues.get(attr)),
+							"Verification of '" + attr + "' with value '" + expectedAttributeValues.get(attr)
+									+ "' in response json failed");
+				}
 
 			}
 		}

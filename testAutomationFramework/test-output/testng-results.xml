@@ -2,12 +2,12 @@
 <testng-results skipped="0" failed="0" ignored="0" total="6" passed="6">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="6013" started-at="2019-07-27T19:06:27Z" finished-at="2019-07-27T19:06:33Z">
+  <suite name="Default suite" duration-ms="147363" started-at="2019-07-28T18:41:10Z" finished-at="2019-07-28T18:43:38Z">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="6013" started-at="2019-07-27T19:06:27Z" finished-at="2019-07-27T19:06:33Z">
+    <test name="Default test" duration-ms="147363" started-at="2019-07-28T18:41:10Z" finished-at="2019-07-28T18:43:38Z">
       <class name="com.schemaxtech.testAutomationFrameworkTest.TestAutomationUtilTest">
-        <test-method status="PASS" signature="postSampleTest(java.lang.String, org.json.JSONObject, java.util.Map, java.util.Map)[pri:0, instance:com.schemaxtech.testAutomationFrameworkTest.TestAutomationUtilTest@146ba0ac]" name="postSampleTest" duration-ms="3649" started-at="2019-07-27T19:06:27Z" data-provider="sampleDataProvider" finished-at="2019-07-27T19:06:31Z">
+        <test-method status="PASS" signature="postSampleTest(java.lang.String, org.json.JSONObject, java.util.Map, java.util.Map)[pri:0, instance:com.schemaxtech.testAutomationFrameworkTest.TestAutomationUtilTest@f5ac9e4]" name="postSampleTest" duration-ms="3080" started-at="2019-07-28T18:41:11Z" data-provider="sampleDataProvider" finished-at="2019-07-28T18:41:14Z">
           <params>
             <param index="0">
               <value>
@@ -21,19 +21,19 @@
             </param>
             <param index="2">
               <value>
-                <![CDATA[{operation_name=laying, operation_type=, errInfo=, isactive=, operation_description=laying, operation_code=, message=, operation_category=, status=}]]>
+                <![CDATA[{title=, id=}]]>
               </value>
             </param>
             <param index="3">
               <value>
-                <![CDATA[{operation_name=operation_name, errInfo=errInfo, operation_description=operation_description, operation_code=operation_code, isActive=isActive, message=message, status=status}]]>
+                <![CDATA[{title=title, id=id}]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- postSampleTest -->
-        <test-method status="PASS" signature="postSampleTest(java.lang.String, org.json.JSONObject, java.util.Map, java.util.Map)[pri:0, instance:com.schemaxtech.testAutomationFrameworkTest.TestAutomationUtilTest@146ba0ac]" name="postSampleTest" duration-ms="479" started-at="2019-07-27T19:06:31Z" data-provider="sampleDataProvider" finished-at="2019-07-27T19:06:31Z">
+        <test-method status="PASS" signature="postSampleTest(java.lang.String, org.json.JSONObject, java.util.Map, java.util.Map)[pri:0, instance:com.schemaxtech.testAutomationFrameworkTest.TestAutomationUtilTest@f5ac9e4]" name="postSampleTest" duration-ms="370" started-at="2019-07-28T18:41:14Z" data-provider="sampleDataProvider" finished-at="2019-07-28T18:41:14Z">
           <params>
             <param index="0">
               <value>
@@ -47,19 +47,19 @@
             </param>
             <param index="2">
               <value>
-                <![CDATA[{operation_name=cutting, operation_type=, errInfo=, isactive=, operation_description=cutting1, operation_code=, message=, operation_category=, status=}]]>
+                <![CDATA[{title=, id=}]]>
               </value>
             </param>
             <param index="3">
               <value>
-                <![CDATA[{operation_name=operation_name, errInfo=errInfo, operation_description=operation_description, operation_code=operation_code, isActive=isActive, message=message, status=status}]]>
+                <![CDATA[{title=title, id=id}]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- postSampleTest -->
-        <test-method status="PASS" signature="postSampleTest(java.lang.String, org.json.JSONObject, java.util.Map, java.util.Map)[pri:0, instance:com.schemaxtech.testAutomationFrameworkTest.TestAutomationUtilTest@146ba0ac]" name="postSampleTest" duration-ms="522" started-at="2019-07-27T19:06:31Z" data-provider="sampleDataProvider" finished-at="2019-07-27T19:06:32Z">
+        <test-method status="PASS" signature="postSampleTest(java.lang.String, org.json.JSONObject, java.util.Map, java.util.Map)[pri:0, instance:com.schemaxtech.testAutomationFrameworkTest.TestAutomationUtilTest@f5ac9e4]" name="postSampleTest" duration-ms="142627" started-at="2019-07-28T18:41:14Z" data-provider="sampleDataProvider" finished-at="2019-07-28T18:43:37Z">
           <params>
             <param index="0">
               <value>
@@ -73,19 +73,19 @@
             </param>
             <param index="2">
               <value>
-                <![CDATA[{operation_name=cuttingdummysuffix, operation_type=, errInfo=, isactive=, operation_description=cuttingdummysuffix, operation_code=, message=, operation_category=test, status=}]]>
+                <![CDATA[{title=ea molestias quasi exercitationem repellat qui ipsa sit aut, id=3}]]>
               </value>
             </param>
             <param index="3">
               <value>
-                <![CDATA[{operation_name=operation_name, errInfo=errInfo, operation_description=operation_description, operation_code=operation_code, isActive=isActive, message=message, status=status}]]>
+                <![CDATA[{title=title, id=id}]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- postSampleTest -->
-        <test-method status="PASS" signature="postSampleTest(java.lang.String, org.json.JSONObject, java.util.Map, java.util.Map)[pri:0, instance:com.schemaxtech.testAutomationFrameworkTest.TestAutomationUtilTest@146ba0ac]" name="postSampleTest" duration-ms="375" started-at="2019-07-27T19:06:32Z" data-provider="sampleDataProvider" finished-at="2019-07-27T19:06:32Z">
+        <test-method status="PASS" signature="postSampleTest(java.lang.String, org.json.JSONObject, java.util.Map, java.util.Map)[pri:0, instance:com.schemaxtech.testAutomationFrameworkTest.TestAutomationUtilTest@f5ac9e4]" name="postSampleTest" duration-ms="399" started-at="2019-07-28T18:43:37Z" data-provider="sampleDataProvider" finished-at="2019-07-28T18:43:37Z">
           <params>
             <param index="0">
               <value>
@@ -99,19 +99,19 @@
             </param>
             <param index="2">
               <value>
-                <![CDATA[{operation_name=laying1, operation_type=, errInfo=, isactive=, operation_description=laying, operation_code=, message=, operation_category=, status=}]]>
+                <![CDATA[{title=, id=}]]>
               </value>
             </param>
             <param index="3">
               <value>
-                <![CDATA[{operation_name=operation_name, errInfo=errInfo, operation_description=operation_description, operation_code=operation_code, isActive=isActive, message=message, status=status}]]>
+                <![CDATA[{title=title, id=id}]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- postSampleTest -->
-        <test-method status="PASS" signature="postSampleTest(java.lang.String, org.json.JSONObject, java.util.Map, java.util.Map)[pri:0, instance:com.schemaxtech.testAutomationFrameworkTest.TestAutomationUtilTest@146ba0ac]" name="postSampleTest" duration-ms="353" started-at="2019-07-27T19:06:32Z" data-provider="sampleDataProvider" finished-at="2019-07-27T19:06:32Z">
+        <test-method status="PASS" signature="postSampleTest(java.lang.String, org.json.JSONObject, java.util.Map, java.util.Map)[pri:0, instance:com.schemaxtech.testAutomationFrameworkTest.TestAutomationUtilTest@f5ac9e4]" name="postSampleTest" duration-ms="330" started-at="2019-07-28T18:43:37Z" data-provider="sampleDataProvider" finished-at="2019-07-28T18:43:37Z">
           <params>
             <param index="0">
               <value>
@@ -125,19 +125,19 @@
             </param>
             <param index="2">
               <value>
-                <![CDATA[{operation_name=laying1, operation_type=, errInfo=, isactive=, operation_description=laying, operation_code=, message=, operation_category=, status=}]]>
+                <![CDATA[{title=, id=}]]>
               </value>
             </param>
             <param index="3">
               <value>
-                <![CDATA[{operation_name=operation_name, errInfo=errInfo, operation_description=operation_description, operation_code=operation_code, isActive=isActive, message=message, status=status}]]>
+                <![CDATA[{title=title, id=id}]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- postSampleTest -->
-        <test-method status="PASS" signature="postSampleTest(java.lang.String, org.json.JSONObject, java.util.Map, java.util.Map)[pri:0, instance:com.schemaxtech.testAutomationFrameworkTest.TestAutomationUtilTest@146ba0ac]" name="postSampleTest" duration-ms="497" started-at="2019-07-27T19:06:32Z" data-provider="sampleDataProvider" finished-at="2019-07-27T19:06:33Z">
+        <test-method status="PASS" signature="postSampleTest(java.lang.String, org.json.JSONObject, java.util.Map, java.util.Map)[pri:0, instance:com.schemaxtech.testAutomationFrameworkTest.TestAutomationUtilTest@f5ac9e4]" name="postSampleTest" duration-ms="369" started-at="2019-07-28T18:43:37Z" data-provider="sampleDataProvider" finished-at="2019-07-28T18:43:38Z">
           <params>
             <param index="0">
               <value>
@@ -151,12 +151,12 @@
             </param>
             <param index="2">
               <value>
-                <![CDATA[{operation_name=cutting, operation_type=, errInfo=, isactive=, operation_description=sewing, operation_code=, message=, operation_category=, status=}]]>
+                <![CDATA[{title=, id=}]]>
               </value>
             </param>
             <param index="3">
               <value>
-                <![CDATA[{operation_name=operation_name, errInfo=errInfo, operation_description=operation_description, operation_code=operation_code, isActive=isActive, message=message, status=status}]]>
+                <![CDATA[{title=title, id=id}]]>
               </value>
             </param>
           </params>

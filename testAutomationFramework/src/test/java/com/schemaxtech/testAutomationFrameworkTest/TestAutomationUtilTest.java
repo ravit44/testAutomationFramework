@@ -47,9 +47,10 @@ public class TestAutomationUtilTest {
 	public void postSampleTest(String testCase, JSONObject requestJsonObject,Map<String, Object> expectedAttributeValues,Map<String,String> responseAttributePaths) throws Exception {
 		  
 	    
-		ResponseBody response= TestAutomationUtil.methodForPost("https://reqres.in", "api/users",requestJsonObject);
+		ResponseBody response= TestAutomationUtil.methodForGet("https://jsonplaceholder.typicode.com", "posts",null);
+		
 	
-		TestAutomationUtil.verifyResponse(response, expectedAttributeValues, responseAttributePaths);
+		TestAutomationUtil.verifyResponse((ResponseBody)response, expectedAttributeValues, responseAttributePaths);
 	}
 	
 	
