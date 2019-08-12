@@ -2,20 +2,31 @@ package com.schemaxtech.testAutomationFramework;
 
 import static io.restassured.RestAssured.given;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.Reader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
+import org.apache.commons.io.FileUtils;
+
+import org.json.CDL;
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 import org.testng.Assert;
@@ -23,6 +34,7 @@ import org.testng.Assert;
 import au.com.bytecode.opencsv.CSVReader;
 import io.restassured.http.ContentType;
 import io.restassured.response.ResponseBody;
+import java.lang.Cloneable;
 
 public class TestAutomationUtil {
 
@@ -51,7 +63,7 @@ public class TestAutomationUtil {
 	 */
 
 	public static Map<String, Map<String, Object>> fetchCsvTestData(final String csvPath) throws IOException {
-		Map<String, Map<String, Object>> attributeValues = new HashMap<String, Map<String, Object>>();
+		Map<String, Map<String, Object>> attributeValues = new LinkedHashMap<String, Map<String, Object>>();
 		List<String[]> values = readCsv(csvPath);
 		String[] headers = (String[]) values.get(0);
 		for (int i = 1; i < values.size(); i++) {
@@ -120,8 +132,8 @@ public class TestAutomationUtil {
 	public static Map<String, JSONObject> updateJsonWithTestData(Map<String, Map<String, Object>> attributeValues,
 			Map<String, String> attrPaths, JSONObject jsonObject) throws Exception {
 
-		JSONObject rootNode = new JSONObject(jsonObject);
-		Map<String, JSONObject> inputtestData = new HashMap<String, JSONObject>();
+		JSONObject rootNode = new JSONObject(jsonObject, JSONObject.getNames(jsonObject));
+		Map<String, JSONObject> inputtestData = new LinkedHashMap<String, JSONObject>();
 		for (String testname : attributeValues.keySet()) {
 			JSONObject tempJson = new JSONObject();
 			for (String attrname : attributeValues.get(testname).keySet()) {
@@ -130,7 +142,8 @@ public class TestAutomationUtil {
 
 			}
 			inputtestData.put(testname, tempJson);
-			rootNode = new JSONObject(jsonObject);
+			rootNode = new JSONObject(jsonObject, JSONObject.getNames(jsonObject));
+
 		}
 
 		return inputtestData;
@@ -147,17 +160,33 @@ public class TestAutomationUtil {
 	 * @throws Exception
 	 */
 	public static JSONObject UpdateJsonValue(Object value, JSONObject recjsonObject, String[] keys) throws Exception {
-		String currentKey = keys[0];
-		if (keys.length == 1) {
 
-			return recjsonObject.put(currentKey, value);
-		} else if (!recjsonObject.has(currentKey)) {
-			throw new Exception(currentKey + "is not a valid key.");
+		String currentKey = keys[0];
+		if (recjsonObject.keySet().contains(currentKey)) {
+			if (keys.length == 1) {
+				if (value.toString().contains(", ")) {
+					JSONArray arr = new JSONArray();
+					for (String val : value.toString().split(", ")) {
+						arr.put(val);
+
+					}
+
+					return recjsonObject.put(currentKey, arr);
+				} else {
+					return recjsonObject.put(currentKey, value);
+				}
+
+			} else if (!recjsonObject.has(currentKey)) {
+				throw new Exception(currentKey + "is not a valid key.");
+			}
+			JSONObject nestedJsonObjectVal = recjsonObject.getJSONObject(currentKey);
+			String[] remainingKeys = Arrays.copyOfRange(keys, 1, keys.length);
+			JSONObject updatedNestedValue = UpdateJsonValue(value, nestedJsonObjectVal, remainingKeys);
+			return recjsonObject.put(currentKey, updatedNestedValue);
+		} else {
+			return recjsonObject;
 		}
-		JSONObject nestedJsonObjectVal = recjsonObject.getJSONObject(currentKey);
-		String[] remainingKeys = Arrays.copyOfRange(keys, 1, keys.length);
-		JSONObject updatedNestedValue = UpdateJsonValue(value, nestedJsonObjectVal, remainingKeys);
-		return recjsonObject.put(currentKey, updatedNestedValue);
+
 	}
 
 	/**
@@ -237,7 +266,7 @@ public class TestAutomationUtil {
 									+ "' in response json failed");
 				} else {
 					Assert.assertEquals(parseString(actualResponse.toString()),
-							parseString( expectedAttributeValues.get(attr).toString()),
+							parseString(expectedAttributeValues.get(attr).toString()),
 							"Verification of '" + attr + "' with value '" + expectedAttributeValues.get(attr)
 									+ "' in response json failed");
 				}
@@ -301,7 +330,7 @@ public class TestAutomationUtil {
 	 */
 	public static Object parseString(String value) {
 
-		if (value.matches("[+-]?[0-9][0-9]*")) {
+		if (value.matches("[+-]?[1-9][0-9]*")) {
 			return Integer.parseInt(value);
 		} else if (value.toLowerCase().matches("true|false")) {
 			return Boolean.parseBoolean(value);

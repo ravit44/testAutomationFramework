@@ -4,6 +4,7 @@ import java.util.Map;
 
 import org.json.JSONObject;
 
+
 public class TestCaseInfo {
 	public Map<String, JSONObject> requestJsonObject;
 	public Map<String, String> responseAttributePaths;

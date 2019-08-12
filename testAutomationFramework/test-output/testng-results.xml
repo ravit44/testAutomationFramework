@@ -1,65 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="1" ignored="0" total="6" passed="5">
+<testng-results skipped="0" failed="1" ignored="0" total="2" passed="1">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="8546" started-at="2019-07-28T19:20:17Z" finished-at="2019-07-28T19:20:25Z">
+  <suite name="Default suite" duration-ms="51015" started-at="2019-08-12T19:50:22Z" finished-at="2019-08-12T19:51:13Z">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="8546" started-at="2019-07-28T19:20:17Z" finished-at="2019-07-28T19:20:25Z">
+    <test name="Default test" duration-ms="51015" started-at="2019-08-12T19:50:22Z" finished-at="2019-08-12T19:51:13Z">
       <class name="com.schemaxtech.testAutomationFrameworkTest.TestAutomationUtilTest">
-        <test-method status="PASS" signature="postSampleTest(java.lang.String, org.json.JSONObject, java.util.Map, java.util.Map)[pri:0, instance:com.schemaxtech.testAutomationFrameworkTest.TestAutomationUtilTest@f6c48ac]" name="postSampleTest" duration-ms="3559" started-at="2019-07-28T19:20:17Z" data-provider="sampleDataProvider" finished-at="2019-07-28T19:20:20Z">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[TC_003]]>
-              </value>
-            </param>
-            <param index="1">
-              <value>
-                <![CDATA[{"operation_name":"laying","is_external_operation":true,"operation_type":"Cut","operation_description":"laying","operation_code":10,"empty":false,"operation_category":"Panel Form"}]]>
-              </value>
-            </param>
-            <param index="2">
-              <value>
-                <![CDATA[{title=, id=}]]>
-              </value>
-            </param>
-            <param index="3">
-              <value>
-                <![CDATA[{title=title, id=id}]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- postSampleTest -->
-        <test-method status="PASS" signature="postSampleTest(java.lang.String, org.json.JSONObject, java.util.Map, java.util.Map)[pri:0, instance:com.schemaxtech.testAutomationFrameworkTest.TestAutomationUtilTest@f6c48ac]" name="postSampleTest" duration-ms="888" started-at="2019-07-28T19:20:20Z" data-provider="sampleDataProvider" finished-at="2019-07-28T19:20:21Z">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[TC_002]]>
-              </value>
-            </param>
-            <param index="1">
-              <value>
-                <![CDATA[{"operation_name":"cutting","is_external_operation":true,"operation_type":"Cut","operation_description":"cutting1","operation_code":10,"empty":false,"operation_category":"Panel Form"}]]>
-              </value>
-            </param>
-            <param index="2">
-              <value>
-                <![CDATA[{title=, id=}]]>
-              </value>
-            </param>
-            <param index="3">
-              <value>
-                <![CDATA[{title=title, id=id}]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- postSampleTest -->
-        <test-method status="FAIL" signature="postSampleTest(java.lang.String, org.json.JSONObject, java.util.Map, java.util.Map)[pri:0, instance:com.schemaxtech.testAutomationFrameworkTest.TestAutomationUtilTest@f6c48ac]" name="postSampleTest" duration-ms="1323" started-at="2019-07-28T19:20:21Z" data-provider="sampleDataProvider" finished-at="2019-07-28T19:20:23Z">
+        <test-method status="FAIL" signature="postSampleTest(java.lang.String, org.json.JSONObject, java.util.Map, java.util.Map)[pri:0, instance:com.schemaxtech.testAutomationFrameworkTest.TestAutomationUtilTest@f5ac9e4]" name="postSampleTest" duration-ms="23915" started-at="2019-08-12T19:50:33Z" data-provider="sampleDataProvider" finished-at="2019-08-12T19:50:56Z">
           <params>
             <param index="0">
               <value>
@@ -68,7 +16,7 @@
             </param>
             <param index="1">
               <value>
-                <![CDATA[{"operation_name":"cuttingdummysuffix","is_external_operation":true,"operation_type":"Cut","operation_description":"cuttingdummysuffix","operation_code":10,"empty":false,"operation_category":"Panel Form"}]]>
+                <![CDATA[{"workstation_type_id":345,"operation_code":["123","456","789","012"]}]]>
               </value>
             </param>
             <param index="2">
@@ -92,8 +40,8 @@ at org.testng.Assert.fail(Assert.java:96)
 at org.testng.Assert.failNotEquals(Assert.java:776)
 at org.testng.Assert.assertEqualsImpl(Assert.java:137)
 at org.testng.Assert.assertEquals(Assert.java:118)
-at com.schemaxtech.testAutomationFramework.TestAutomationUtil.verifyResponse(TestAutomationUtil.java:239)
-at com.schemaxtech.testAutomationFrameworkTest.TestAutomationUtilTest.postSampleTest(TestAutomationUtilTest.java:57)
+at com.schemaxtech.testAutomationFramework.TestAutomationUtil.verifyResponse(TestAutomationUtil.java:268)
+at com.schemaxtech.testAutomationFrameworkTest.TestAutomationUtilTest.postSampleTest(TestAutomationUtilTest.java:69)
 at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
 at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
@@ -125,68 +73,16 @@ at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
           <reporter-output>
           </reporter-output>
         </test-method> <!-- postSampleTest -->
-        <test-method status="PASS" signature="postSampleTest(java.lang.String, org.json.JSONObject, java.util.Map, java.util.Map)[pri:0, instance:com.schemaxtech.testAutomationFrameworkTest.TestAutomationUtilTest@f6c48ac]" name="postSampleTest" duration-ms="847" started-at="2019-07-28T19:20:23Z" data-provider="sampleDataProvider" finished-at="2019-07-28T19:20:23Z">
+        <test-method status="PASS" signature="postSampleTest(java.lang.String, org.json.JSONObject, java.util.Map, java.util.Map)[pri:0, instance:com.schemaxtech.testAutomationFrameworkTest.TestAutomationUtilTest@f5ac9e4]" name="postSampleTest" duration-ms="16934" started-at="2019-08-12T19:50:56Z" data-provider="sampleDataProvider" finished-at="2019-08-12T19:51:13Z">
           <params>
             <param index="0">
               <value>
-                <![CDATA[TC_006]]>
+                <![CDATA[TC_002]]>
               </value>
             </param>
             <param index="1">
               <value>
-                <![CDATA[{"operation_name":"laying1","is_external_operation":true,"operation_type":"test","operation_description":"laying","operation_code":12,"empty":false,"operation_category":"Panel Form"}]]>
-              </value>
-            </param>
-            <param index="2">
-              <value>
-                <![CDATA[{title=, id=}]]>
-              </value>
-            </param>
-            <param index="3">
-              <value>
-                <![CDATA[{title=title, id=id}]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- postSampleTest -->
-        <test-method status="PASS" signature="postSampleTest(java.lang.String, org.json.JSONObject, java.util.Map, java.util.Map)[pri:0, instance:com.schemaxtech.testAutomationFrameworkTest.TestAutomationUtilTest@f6c48ac]" name="postSampleTest" duration-ms="881" started-at="2019-07-28T19:20:23Z" data-provider="sampleDataProvider" finished-at="2019-07-28T19:20:24Z">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[TC_005]]>
-              </value>
-            </param>
-            <param index="1">
-              <value>
-                <![CDATA[{"operation_name":"laying1","is_external_operation":true,"operation_type":"Cut","operation_description":"laying","operation_code":12,"empty":false,"operation_category":"test"}]]>
-              </value>
-            </param>
-            <param index="2">
-              <value>
-                <![CDATA[{title=, id=}]]>
-              </value>
-            </param>
-            <param index="3">
-              <value>
-                <![CDATA[{title=title, id=id}]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- postSampleTest -->
-        <test-method status="PASS" signature="postSampleTest(java.lang.String, org.json.JSONObject, java.util.Map, java.util.Map)[pri:0, instance:com.schemaxtech.testAutomationFrameworkTest.TestAutomationUtilTest@f6c48ac]" name="postSampleTest" duration-ms="889" started-at="2019-07-28T19:20:24Z" data-provider="sampleDataProvider" finished-at="2019-07-28T19:20:25Z">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[TC_004]]>
-              </value>
-            </param>
-            <param index="1">
-              <value>
-                <![CDATA[{"operation_name":"cutting","is_external_operation":true,"operation_type":"Cut","operation_description":"sewing","operation_code":100,"empty":false,"operation_category":"Panel Form"}]]>
+                <![CDATA[{"workstation_type_id":"def","operation_code":["abc"]}]]>
               </value>
             </param>
             <param index="2">
