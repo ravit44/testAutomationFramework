@@ -2,12 +2,12 @@
 <testng-results skipped="0" failed="1" ignored="0" total="2" passed="1">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="51015" started-at="2019-08-12T19:50:22Z" finished-at="2019-08-12T19:51:13Z">
+  <suite name="Default suite" duration-ms="33543" started-at="2019-08-12T20:10:09Z" finished-at="2019-08-12T20:10:43Z">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="51015" started-at="2019-08-12T19:50:22Z" finished-at="2019-08-12T19:51:13Z">
+    <test name="Default test" duration-ms="33543" started-at="2019-08-12T20:10:09Z" finished-at="2019-08-12T20:10:43Z">
       <class name="com.schemaxtech.testAutomationFrameworkTest.TestAutomationUtilTest">
-        <test-method status="FAIL" signature="postSampleTest(java.lang.String, org.json.JSONObject, java.util.Map, java.util.Map)[pri:0, instance:com.schemaxtech.testAutomationFrameworkTest.TestAutomationUtilTest@f5ac9e4]" name="postSampleTest" duration-ms="23915" started-at="2019-08-12T19:50:33Z" data-provider="sampleDataProvider" finished-at="2019-08-12T19:50:56Z">
+        <test-method status="FAIL" signature="postSampleTest(java.lang.String, org.json.JSONObject, java.util.Map, java.util.Map)[pri:0, instance:com.schemaxtech.testAutomationFrameworkTest.TestAutomationUtilTest@55b7a4e0]" name="postSampleTest" duration-ms="21071" started-at="2019-08-12T20:10:09Z" data-provider="sampleDataProvider" finished-at="2019-08-12T20:10:30Z">
           <params>
             <param index="0">
               <value>
@@ -40,7 +40,7 @@ at org.testng.Assert.fail(Assert.java:96)
 at org.testng.Assert.failNotEquals(Assert.java:776)
 at org.testng.Assert.assertEqualsImpl(Assert.java:137)
 at org.testng.Assert.assertEquals(Assert.java:118)
-at com.schemaxtech.testAutomationFramework.TestAutomationUtil.verifyResponse(TestAutomationUtil.java:268)
+at com.schemaxtech.testAutomationFramework.TestAutomationUtil.verifyResponse(TestAutomationUtil.java:258)
 at com.schemaxtech.testAutomationFrameworkTest.TestAutomationUtilTest.postSampleTest(TestAutomationUtilTest.java:69)
 at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
@@ -73,7 +73,7 @@ at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
           <reporter-output>
           </reporter-output>
         </test-method> <!-- postSampleTest -->
-        <test-method status="PASS" signature="postSampleTest(java.lang.String, org.json.JSONObject, java.util.Map, java.util.Map)[pri:0, instance:com.schemaxtech.testAutomationFrameworkTest.TestAutomationUtilTest@f5ac9e4]" name="postSampleTest" duration-ms="16934" started-at="2019-08-12T19:50:56Z" data-provider="sampleDataProvider" finished-at="2019-08-12T19:51:13Z">
+        <test-method status="PASS" signature="postSampleTest(java.lang.String, org.json.JSONObject, java.util.Map, java.util.Map)[pri:0, instance:com.schemaxtech.testAutomationFrameworkTest.TestAutomationUtilTest@55b7a4e0]" name="postSampleTest" duration-ms="12352" started-at="2019-08-12T20:10:31Z" data-provider="sampleDataProvider" finished-at="2019-08-12T20:10:43Z">
           <params>
             <param index="0">
               <value>

@@ -2,15 +2,10 @@ package com.schemaxtech.testAutomationFramework;
 
 import static io.restassured.RestAssured.given;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.io.Reader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -22,11 +17,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
-import org.apache.commons.io.FileUtils;
-
-import org.json.CDL;
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 import org.testng.Assert;
@@ -34,7 +25,6 @@ import org.testng.Assert;
 import au.com.bytecode.opencsv.CSVReader;
 import io.restassured.http.ContentType;
 import io.restassured.response.ResponseBody;
-import java.lang.Cloneable;
 
 public class TestAutomationUtil {
 
